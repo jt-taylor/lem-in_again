@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 17:23:04 by jtaylor           #+#    #+#             */
-/*   Updated: 2020/02/26 04:23:06 by jtaylor          ###   ########.fr       */
+/*   Updated: 2020/02/26 13:30:51 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -226,7 +226,7 @@ void				test_bad_follow_path(t_lemin *lemin)
 	while (!true_if_all_ants_in_exit_room(lemin))
 	{
 		//bad_move_ants(lemin, test);
-		ft_bzero(lemin->ant_was_moved, (lemin->total_ants + 1) * sizeof(int));
+		ft_bzero(lemin->ant_was_moved, ((lemin->total_ants) * sizeof(int)));
 		follow_path_list(lemin);
 		print_ants_endturn(lemin);
 	}

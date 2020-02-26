@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 21:49:29 by jtaylor           #+#    #+#             */
-/*   Updated: 2020/02/26 04:31:07 by jtaylor          ###   ########.fr       */
+/*   Updated: 2020/02/26 13:34:43 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static inline void	follow_path(t_lemin *lemin, t_path_list *path)
 	struct s_node		*tmp;
 	int					i;
 
-	tmp = path->first->content;
+	tmp = path->first;
 	while (tmp)
 	{
 		i = index_of_ant_in_parent_room(lemin, tmp);

@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 09:53:58 by jtaylor           #+#    #+#             */
-/*   Updated: 2020/02/26 04:12:29 by jtaylor          ###   ########.fr       */
+/*   Updated: 2020/02/26 13:34:15 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ typedef struct	s_rooms
 	int				to_use_start;
 	struct s_rooms	*next;
 	struct s_rooms	*prev;
-	void			*ant_arr;
+	//void			*ant_arr;
 }				t_rooms;
 
 typedef struct	s_link
