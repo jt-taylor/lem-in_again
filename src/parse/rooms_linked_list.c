@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 17:01:47 by jtaylor           #+#    #+#             */
-/*   Updated: 2020/02/25 18:46:23 by jtaylor          ###   ########.fr       */
+/*   Updated: 2020/02/25 22:54:51 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ static void		init_room(t_rooms *room)
 		room->prev = 0;
 		room->forward = 0;
 		room->backward = 0;
+		room->to_use = 1;
 		room->room_id = i++;
 		room->room_name = 0;
 	}

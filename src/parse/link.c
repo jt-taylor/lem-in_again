@@ -6,7 +6,7 @@
 /*   By: marrodri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 16:37:51 by marrodri          #+#    #+#             */
-/*   Updated: 2020/02/25 18:39:32 by jtaylor          ###   ########.fr       */
+/*   Updated: 2020/02/25 22:56:43 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	add_new_link(t_lemin *lemin, void *room1, void *room2)
 		exit(MALLOC_ERR);
 	new_link->room1 = room1;
 	new_link->room2 = room2;
-	new_link->to_use = 0;
 	new_link->next = NULL;
 	if (!lemin->links)
 		lemin->links = new_link;

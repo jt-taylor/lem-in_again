@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 09:53:58 by jtaylor           #+#    #+#             */
-/*   Updated: 2020/02/25 22:01:21 by jtaylor          ###   ########.fr       */
+/*   Updated: 2020/02/25 23:41:40 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ typedef struct	s_rooms
 	int				y;
 	char			forward;
 	char			backward;
-	int				links_counter;
+	int				to_use;
 	struct s_rooms	*next;
 	struct s_rooms	*prev;
 	void			*ant_arr;
@@ -88,7 +88,6 @@ typedef struct	s_link
 {
 	t_rooms			*room1;
 	t_rooms		*room2;
-	int				to_use;
 	struct s_link	*next;
 }				t_link;
 
@@ -159,6 +158,14 @@ void			failed_read_start_end_room(t_lemin *lemin,
 						char *line, char *in);
 
 /*
+** debug -----------------------------------------------------------------------
+*/
+
+void			print_queue(t_queue *queue);
+void			print_tree_contents(t_tree *tree,
+					t_branch *specified_branch);
+
+/*
 ** Cleanup ---------------------------------------------------------------------
 */
 
@@ -196,6 +203,7 @@ void			add_parent_nodes_to_tree(t_tree *tree);
 */
 
 int				alg_main(t_lemin *lemin);
+void			update_rooms_with_path_info(t_lemin *lemin, t_path *path);
 void			print_ants_endturn(t_lemin *lemin);//rewrite this ?
 // right now its in the test_move ants but it should work the way i want to write it
 //

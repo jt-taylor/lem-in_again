@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 17:23:04 by jtaylor           #+#    #+#             */
-/*   Updated: 2020/02/25 22:44:26 by jtaylor          ###   ########.fr       */
+/*   Updated: 2020/02/25 23:21:42 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ t_path				*init_new_path(t_lemin *lemin)
 {
 	t_path			*new_path;
 
-	new_path = (t_path *)malloc(sizeof(t_path *));
+	new_path = (t_path *)malloc(sizeof(t_path));
 	if (!new_path)
 		exit(MALLOC_ERR);
 	new_path->past_rooms = (void **)malloc(sizeof(void *) *
@@ -182,6 +182,7 @@ void				test_bad_follow_path(t_lemin *lemin)
 	}
 }
 
+
 // TODO :: fix me lol
 // simple version for now that only finds one path
 
@@ -193,6 +194,7 @@ int					alg_main(t_lemin *lemin)
 	path->end_br = search_branch(path->tree->root, lemin->end);
 	add_parent_nodes_to_tree(path->tree);
 	lemin->shortest_path = path;
+	update_rooms_with_path_info(lemin, path);
 	if (lemin->shortest_path->has_end)
 	{
 		ant_arr_init(lemin);
