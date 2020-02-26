@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 09:53:58 by jtaylor           #+#    #+#             */
-/*   Updated: 2020/02/25 23:41:40 by jtaylor          ###   ########.fr       */
+/*   Updated: 2020/02/26 02:19:50 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ typedef struct	s_rooms
 	char			forward;
 	char			backward;
 	int				to_use;
+	int				to_use_start;
 	struct s_rooms	*next;
 	struct s_rooms	*prev;
 	void			*ant_arr;

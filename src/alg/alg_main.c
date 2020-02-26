@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 17:23:04 by jtaylor           #+#    #+#             */
-/*   Updated: 2020/02/26 01:46:25 by jtaylor          ###   ########.fr       */
+/*   Updated: 2020/02/26 02:26:41 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,9 +90,9 @@ static inline void	populate_path_start_room(t_lemin *lemin, t_path *path)
 	path->room_to_check = dequeue(path->q);
 	while (path->cur_link)
 	{
-		if (path->room_to_check == path->cur_link->room1 && path->cur_link->room2->to_use == 1)
+		if (path->room_to_check == path->cur_link->room1 && path->cur_link->room2->to_use_start == 1)
 			populate_path_inner2(lemin, path);
-		else if (path->room_to_check == path->cur_link->room2 && path->cur_link->room1->to_use == 1)
+		else if (path->room_to_check == path->cur_link->room2 && path->cur_link->room1->to_use_start == 1)
 			populate_path_inner1(lemin, path);
 		if (path->room_to_check == lemin->end)
 		{
@@ -105,7 +105,10 @@ static inline void	populate_path_start_room(t_lemin *lemin, t_path *path)
 
 static inline int	populate_path_inner_norm(t_lemin *lemin, t_path *path)
 {
-	if (path->room_to_check->to_use != 1 && (path->room_to_check != lemin->start))
+	(void)lemin;
+	if (path->room_to_check->to_use != 1 && !path->room_to_check->backward)
+		return (1);
+	if ((path->cur_link->room1 == lemin->end || path->cur_link->room2 == lemin->end) && !path->room_to_check->to_use)
 		return (1);
 	return (0);
 }
@@ -121,9 +124,9 @@ int					populate_path(t_lemin *lemin, t_path *path)
 			continue ;
 		while (path->cur_link)
 		{
-			if (path->room_to_check == path->cur_link->room1 && (path->cur_link->room2->to_use == 1 || (path->cur_link->room2->backward == 1 && path->cur_link->room2 != lemin->end)))
+			if (path->room_to_check == path->cur_link->room1 && (path->cur_link->room1->to_use || (path->cur_link->room2->to_use != 1 && path->cur_link->room2 != lemin->end) || (path->cur_link->room2->backward == 1 && path->cur_link->room2 != lemin->end)))
 				populate_path_inner2(lemin, path);
-			else if (path->room_to_check == path->cur_link->room2 && (path->cur_link->room1->to_use == 1 || (path->cur_link->room1->backward == 1 && path->cur_link->room1 != lemin->end)))
+			else if (path->room_to_check == path->cur_link->room2 && (path->cur_link->room1->to_use || (path->cur_link->room1->to_use != 1 && path->cur_link->room1 != lemin->end) || (path->cur_link->room1->backward == 1 && path->cur_link->room1 != lemin->end)))
 				populate_path_inner1(lemin, path);
 			if (path->room_to_check == lemin->end)
 			{
