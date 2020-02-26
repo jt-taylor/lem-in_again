@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 17:21:32 by jtaylor           #+#    #+#             */
-/*   Updated: 2020/02/26 00:22:27 by jtaylor          ###   ########.fr       */
+/*   Updated: 2020/02/26 00:33:22 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ void				parse_links(t_lemin *lemin, char *line)
 	char	**rooms;
 	t_rooms	*tmp1;
 	t_rooms	*tmp2;
-
 
 	rooms = ft_strsplit(line, '-');
 	tmp1 = room_name_checker(lemin->rooms, rooms[0]);

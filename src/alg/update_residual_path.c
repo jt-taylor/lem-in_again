@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 22:58:03 by jtaylor           #+#    #+#             */
-/*   Updated: 2020/02/25 23:18:42 by jtaylor          ###   ########.fr       */
+/*   Updated: 2020/02/26 01:15:16 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void				update_rooms_with_path_info(t_lemin *lemin, t_path *path)
 	{
 		if (tmp->kid == path->end_br || tmp->parent->content == lemin->start)
 			toggle_to_use(lemin, path, tmp);
-		else if (tmp->content != lemin->start && tmp != path->end_br)
+		if (tmp->content != lemin->start && tmp != path->end_br)
 		{
 			((t_rooms *)tmp->content)->forward += 1;
 			((t_rooms *)tmp->content)->backward ^= 1;

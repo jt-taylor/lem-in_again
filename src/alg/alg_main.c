@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 17:23:04 by jtaylor           #+#    #+#             */
-/*   Updated: 2020/02/25 23:21:42 by jtaylor          ###   ########.fr       */
+/*   Updated: 2020/02/26 01:46:25 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,17 +84,46 @@ static inline void	populate_path_inner2(t_lemin *lemin, t_path *path)
 // TODO :: add the checking of the avaliablity of the room here
 // ie room->forward && room->backward
 
+static inline void	populate_path_start_room(t_lemin *lemin, t_path *path)
+{
+	path->cur_link = lemin->links;
+	path->room_to_check = dequeue(path->q);
+	while (path->cur_link)
+	{
+		if (path->room_to_check == path->cur_link->room1 && path->cur_link->room2->to_use == 1)
+			populate_path_inner2(lemin, path);
+		else if (path->room_to_check == path->cur_link->room2 && path->cur_link->room1->to_use == 1)
+			populate_path_inner1(lemin, path);
+		if (path->room_to_check == lemin->end)
+		{
+			path->has_end = 1;
+			break ;
+		}
+		path->cur_link = path->cur_link->next;
+	}
+}
+
+static inline int	populate_path_inner_norm(t_lemin *lemin, t_path *path)
+{
+	if (path->room_to_check->to_use != 1 && (path->room_to_check != lemin->start))
+		return (1);
+	return (0);
+}
+
 int					populate_path(t_lemin *lemin, t_path *path)
 {
 	while (!queue_isempty(path->q))
 	{
 		path->cur_link = lemin->links;
 		path->room_to_check = dequeue(path->q);
+		if (populate_path_inner_norm(lemin, path))
+		//if (path->room_to_check->to_use != 1)//(path->room_to_check->forward && !path->room_to_check->backward)
+			continue ;
 		while (path->cur_link)
 		{
-			if (path->room_to_check == path->cur_link->room1)
+			if (path->room_to_check == path->cur_link->room1 && (path->cur_link->room2->to_use == 1 || (path->cur_link->room2->backward == 1 && path->cur_link->room2 != lemin->end)))
 				populate_path_inner2(lemin, path);
-			else if (path->room_to_check == path->cur_link->room2)
+			else if (path->room_to_check == path->cur_link->room2 && (path->cur_link->room1->to_use == 1 || (path->cur_link->room1->backward == 1 && path->cur_link->room1 != lemin->end)))
 				populate_path_inner1(lemin, path);
 			if (path->room_to_check == lemin->end)
 			{
@@ -137,7 +166,14 @@ t_path				*get_new_path(t_lemin *lemin)
 	path = init_new_path(lemin);
 	path->tree->root = new_branch(lemin->start);
 	enqueue(path->q, lemin->start);
+	populate_path_start_room(lemin, path);
 	populate_path(lemin, path);
+	path->end_br = search_branch(path->tree->root, lemin->end);
+	if (path->end_br)
+	{
+		add_parent_nodes_to_tree(path->tree);
+		update_rooms_with_path_info(lemin, path);
+	}
 	return (path);
 }
 
@@ -169,6 +205,14 @@ int					true_if_all_ants_in_exit_room(t_lemin *lemin)
 	return (1);
 }
 
+void				test_get_second_path(t_lemin *lemin)
+{
+	t_path		*path;
+
+	path = get_new_path(lemin);
+	// wow such great tests
+}
+
 void				test_bad_follow_path(t_lemin *lemin)
 {
 	t_branch		*test;
@@ -191,10 +235,8 @@ int					alg_main(t_lemin *lemin)
 	t_path		*path;
 
 	path = get_new_path(lemin);
-	path->end_br = search_branch(path->tree->root, lemin->end);
-	add_parent_nodes_to_tree(path->tree);
 	lemin->shortest_path = path;
-	update_rooms_with_path_info(lemin, path);
+	test_get_second_path(lemin);
 	if (lemin->shortest_path->has_end)
 	{
 		ant_arr_init(lemin);
