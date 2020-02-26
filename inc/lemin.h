@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 09:53:58 by jtaylor           #+#    #+#             */
-/*   Updated: 2020/02/26 02:19:50 by jtaylor          ###   ########.fr       */
+/*   Updated: 2020/02/26 03:50:52 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,19 @@ typedef struct	s_path
 	t_tree				*tree;
 }				t_path;
 
+typedef struct	s_path_list
+{
+	struct s_node		*first;
+	struct s_node		*last;
+}				t_path_list;
+
+typedef struct	s_all_paths
+{
+	t_path_list				*path;
+	int						path_weight;
+	struct s_all_paths		*next;
+}				t_all_paths;
+
 typedef struct	s_lemin
 {
 	int			total_ants;
@@ -122,6 +135,7 @@ typedef struct	s_lemin
 	t_rooms		*end;
 	t_rooms		*current_room;
 	t_rooms		*rooms;
+	t_all_paths	*all_paths;
 }				t_lemin;
 
 /*
@@ -206,6 +220,7 @@ void			add_parent_nodes_to_tree(t_tree *tree);
 int				alg_main(t_lemin *lemin);
 void			update_rooms_with_path_info(t_lemin *lemin, t_path *path);
 void			print_ants_endturn(t_lemin *lemin);//rewrite this ?
+t_path_list		*convert_path_to_list(t_lemin *lemin, t_path *path);
 // right now its in the test_move ants but it should work the way i want to write it
 //
 /*

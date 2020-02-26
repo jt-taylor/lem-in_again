@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 17:23:04 by jtaylor           #+#    #+#             */
-/*   Updated: 2020/02/26 02:26:41 by jtaylor          ###   ########.fr       */
+/*   Updated: 2020/02/26 03:54:20 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,6 +177,11 @@ t_path				*get_new_path(t_lemin *lemin)
 		add_parent_nodes_to_tree(path->tree);
 		update_rooms_with_path_info(lemin, path);
 	}
+	else
+	{
+		//free the things;
+		return (0);
+	}
 	return (path);
 }
 
@@ -229,17 +234,68 @@ void				test_bad_follow_path(t_lemin *lemin)
 	}
 }
 
+t_all_paths		*init_s_all_paths(void)
+{
+	t_all_paths			*new;
+
+	new = (t_all_paths *)malloc(sizeof(t_all_paths));
+	if (!new)
+		exit(MALLOC_ERR);
+	new->path = 0;
+	new->path_weight = INT_MAX;
+	new->next = 0;
+	return (new);
+}
+
+void			add_path_to_all_path_list(t_lemin *lemin, t_all_paths *list, t_path *path)
+{
+	t_all_paths		*tmp;
+
+	tmp = list;
+	while (tmp && tmp->next)
+		tmp = tmp->next;
+	if (!tmp->path)
+		tmp->path = convert_path_to_list(lemin, path);
+	else
+	{
+		tmp->next = init_s_all_paths();
+		tmp->next->path = convert_path_to_list(lemin, path);
+	}
+}
+
+t_all_paths		*get_all_paths(t_lemin *lemin)
+{
+	t_all_paths			*list;
+	t_path				*tmp;
+
+	list = init_s_all_paths();
+	tmp = get_new_path(lemin);
+	//for testing while unfinished remove me later
+	lemin->shortest_path = tmp;
+	if (!tmp)
+	{
+		ft_dprintf(2, "No path to end room was found\n");
+		//free the things
+		exit(02);//handle no path to exit
+	}
+	while (tmp)
+	{
+		add_path_to_all_path_list(lemin, list, tmp);
+		//free tmp
+		tmp = get_new_path(lemin);
+	}
+	//free tmp
+	return (list);
+}
 
 // TODO :: fix me lol
 // simple version for now that only finds one path
 
 int					alg_main(t_lemin *lemin)
 {
-	t_path		*path;
+	//t_path		*path;
 
-	path = get_new_path(lemin);
-	lemin->shortest_path = path;
-	test_get_second_path(lemin);
+	lemin->all_paths = get_all_paths(lemin);
 	if (lemin->shortest_path->has_end)
 	{
 		ant_arr_init(lemin);
@@ -248,5 +304,6 @@ int					alg_main(t_lemin *lemin)
 	}
 	else
 		ft_dprintf(2, "No path to end room was found\n");//handle no path to end error
-	return ((path) ? 1 : 0);
+	//return ((path) ? 1 : 0);
+	return (1);
 }
