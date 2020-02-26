@@ -6,7 +6,7 @@
 /*   By: marrodri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 18:25:28 by marrodri          #+#    #+#             */
-/*   Updated: 2020/02/20 18:06:19 by jtaylor          ###   ########.fr       */
+/*   Updated: 2020/02/25 18:32:57 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ t_tree		*gen_tree_init(void)
 	t_tree *new_root;
 
 	new_root = malloc(sizeof(t_tree));
+	if (!new_root)
+		exit(MALLOC_ERR);
 	new_root->root = 0;
 	return (new_root);
 }

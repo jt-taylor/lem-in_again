@@ -6,13 +6,13 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 17:01:47 by jtaylor           #+#    #+#             */
-/*   Updated: 2020/02/25 17:24:51 by jtaylor          ###   ########.fr       */
+/*   Updated: 2020/02/25 18:46:23 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-int				room_name_checker(t_rooms *rooms, char *room)
+t_rooms				*room_name_checker(t_rooms *rooms, char *room)
 {
 	t_rooms *curr;
 
@@ -22,7 +22,7 @@ int				room_name_checker(t_rooms *rooms, char *room)
 	while (curr)
 	{
 		if (!ft_strcmp(room, curr->room_name))
-			return (1);
+			return (curr);
 		curr = curr->next;
 	}
 	return (0);

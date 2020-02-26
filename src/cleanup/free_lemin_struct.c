@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 10:38:02 by jtaylor           #+#    #+#             */
-/*   Updated: 2020/02/25 17:18:36 by jtaylor          ###   ########.fr       */
+/*   Updated: 2020/02/25 20:44:24 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ void			lemin_free_links(t_lemin *lemin)
 	while (tmp)
 	{
 		to_del = tmp;
-		free(tmp->room1);
-		free(tmp->room2);
+//		free(tmp->room1);
+//		free(tmp->room2);
 		tmp = tmp->next;
 		free(to_del);
 	}

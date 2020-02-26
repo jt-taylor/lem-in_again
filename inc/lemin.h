@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 09:53:58 by jtaylor           #+#    #+#             */
-/*   Updated: 2020/02/25 17:59:04 by jtaylor          ###   ########.fr       */
+/*   Updated: 2020/02/25 21:26:33 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,13 @@
 # include <stdlib.h>
 # include <stdio.h>
 
+# define MALLOC_ERR 0x01
 # define PARSING_ERR 0x04
 
 /*
 ** Structs ---------------------------------------------------------------------
+** -----------------------------------------------------------------------------
+** -----------------------------------------------------------------------------
 */
 
 /*
@@ -64,7 +67,7 @@ typedef struct	s_tree
 }				t_tree;
 
 /*
-** lemin structs ---------------------------------------------------------------
+** parse -----------------------------------------------------------------------
 */
 
 typedef struct	s_rooms
@@ -83,20 +86,34 @@ typedef struct	s_rooms
 
 typedef struct	s_link
 {
-	char			*room1;
-	char			*room2;
+	t_rooms			*room1;
+	t_rooms		*room2;
 	int				to_use;
 	struct s_link	*next;
 }				t_link;
 
+/*
+** path find -------------------------------------------------------------------
+*/
+
+typedef struct	s_path
+{
+	void				**past_rooms;
+	t_link				*cur_link;
+	t_rooms				*room_to_check;
+	struct s_queue		*q;
+	int					i;
+	int					has_end;
+	t_tree				*tree;
+}				t_path;
 typedef struct	s_lemin
 {
 	int			total_ants;
 	int			room_count;
-	int			end_room_links;
 	int			*ant_was_moved;
-	char		**ant_arr;
+	void		**ant_arr;
 	t_queue		*queue;
+	t_path		*shortest_path;
 	t_link		*links;
 	t_link		*last_link;
 	t_rooms		*start;
@@ -107,6 +124,8 @@ typedef struct	s_lemin
 
 /*
 ** Prototypes ------------------------------------------------------------------
+** -----------------------------------------------------------------------------
+** -----------------------------------------------------------------------------
 */
 
 /*
@@ -115,10 +134,10 @@ typedef struct	s_lemin
 
 void			parser_main(t_lemin *lemin);
 void			parse_comment_rooms(t_lemin *lemin, char *line);
-void			add_new_link(t_lemin *lemin, char *room1, char *room2);
+void			add_new_link(t_lemin *lemin, void *room1, void *room2);
 void			parse_links(t_lemin *lemin, char *line);
 int				get_next_line_wrap(int fd, char **line);
-int				room_name_checker(t_rooms *rooms, char *room);
+t_rooms			*room_name_checker(t_rooms *rooms, char *room);
 t_rooms			*new_room_node(t_rooms *current_room, t_lemin *lemin);
 
 /*
@@ -164,11 +183,23 @@ int				queue_isempty(struct s_queue *queue);
 t_tree			*gen_tree_init(void);
 t_branch		*new_branch(void *cont);
 t_branch		*search_branch(t_branch *root, void *cont);
-t_branch		*search_branch_str(t_branch *root, char *cont);
 int				does_branch_has_link(t_branch *root, void *room1, void *room2);
 int				find_endroom_path(t_lemin *lemin, t_branch *root);
 int				add_branch(t_branch *root, void *cont, t_branch *new_kid);
 void			add_sibbling(t_branch *curr, t_branch *new_sib);
 void			add_parent_nodes_to_tree(t_tree *tree_root);
+
+/*
+** alg -------------------------------------------------------------------------
+*/
+
+int					alg_main(t_lemin *lemin);
+void					print_ants_endturn(t_lemin *lemin);//rewrite this ?
+// right now its in the test_move ants but it should work the way i want to write it
+/*
+** testing
+*/
+
+void		bad_move_ants(t_lemin *lemin, t_branch *end);
 
 #endif

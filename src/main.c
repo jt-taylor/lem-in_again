@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 09:55:24 by jtaylor           #+#    #+#             */
-/*   Updated: 2020/02/25 17:25:31 by jtaylor          ###   ########.fr       */
+/*   Updated: 2020/02/25 19:41:02 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ static inline void	init_struct(t_lemin *lemin)
 {
 	lemin->total_ants = 0;
 	lemin->room_count = 0;
-	lemin->end_room_links = 0;
 	lemin->ant_was_moved = 0;
 	lemin->ant_arr = 0;
 	lemin->links = 0;
@@ -33,6 +32,7 @@ int					main(void)
 
 	init_struct(&lemin);
 	parser_main(&lemin);
+	alg_main(&lemin);
 	/*
 	bfsearch(&lemin);
 	add_parent_nodes_to_tree(lemin.tree_path);

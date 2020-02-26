@@ -6,7 +6,7 @@
 #    By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/16 19:30:49 by jtaylor           #+#    #+#              #
-#    Updated: 2020/02/25 18:01:34 by jtaylor          ###   ########.fr        #
+#    Updated: 2020/02/25 21:50:04 by jtaylor          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,9 @@ SRC_FILE =		main.c \
 				errors/parsin_errors2.c \
 				errors/parsing_erorrs.c \
 				cleanup/free_lemin_struct.c \
-				cleanup/free_queue.c
+				cleanup/free_queue.c \
+				alg/alg_main.c \
+				alg/print_ants_moved.c
 
 SRC = $(addprefix ./src/, $(SRC_FILE))
 
