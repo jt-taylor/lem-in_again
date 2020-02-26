@@ -6,7 +6,7 @@
 #    By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/16 19:30:49 by jtaylor           #+#    #+#              #
-#    Updated: 2020/02/25 21:50:04 by jtaylor          ###   ########.fr        #
+#    Updated: 2020/02/25 22:27:30 by jtaylor          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ INCLUDES += -I ./inc
 SRC_FILE =		main.c \
 				data_structs/general_tree.c \
 				data_structs/general_tree_extension.c \
+				data_structs/add_parent_nodes_to_tree.c \
 				data_structs/queue.c \
 				parse/rooms_linked_list.c \
 				parse/parsing_main.c \
@@ -41,6 +42,7 @@ SRC_FILE =		main.c \
 				cleanup/free_lemin_struct.c \
 				cleanup/free_queue.c \
 				alg/alg_main.c \
+				alg/test_move_ants.c \
 				alg/print_ants_moved.c
 
 SRC = $(addprefix ./src/, $(SRC_FILE))

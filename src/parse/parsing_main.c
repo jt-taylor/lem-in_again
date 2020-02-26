@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 10:29:42 by jtaylor           #+#    #+#             */
-/*   Updated: 2020/02/22 16:20:58 by jtaylor          ###   ########.fr       */
+/*   Updated: 2020/02/25 22:21:35 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void		parse_ant_count(t_lemin *lemin)
 		invalid_ants_error(lemin);
 	lemin->ant_was_moved = malloc((lemin->total_ants) * sizeof(int));
 	if (!lemin->ant_was_moved)
-		;
+		exit(MALLOC_ERR);
 }
 
 static void		parse_rooms(t_lemin *lemin, char *line)

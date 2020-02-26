@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 09:53:58 by jtaylor           #+#    #+#             */
-/*   Updated: 2020/02/25 21:26:33 by jtaylor          ###   ########.fr       */
+/*   Updated: 2020/02/25 22:01:21 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,8 +104,10 @@ typedef struct	s_path
 	struct s_queue		*q;
 	int					i;
 	int					has_end;
+	t_branch			*end_br;
 	t_tree				*tree;
 }				t_path;
+
 typedef struct	s_lemin
 {
 	int			total_ants;
@@ -187,15 +189,16 @@ int				does_branch_has_link(t_branch *root, void *room1, void *room2);
 int				find_endroom_path(t_lemin *lemin, t_branch *root);
 int				add_branch(t_branch *root, void *cont, t_branch *new_kid);
 void			add_sibbling(t_branch *curr, t_branch *new_sib);
-void			add_parent_nodes_to_tree(t_tree *tree_root);
+void			add_parent_nodes_to_tree(t_tree *tree);
 
 /*
 ** alg -------------------------------------------------------------------------
 */
 
-int					alg_main(t_lemin *lemin);
-void					print_ants_endturn(t_lemin *lemin);//rewrite this ?
+int				alg_main(t_lemin *lemin);
+void			print_ants_endturn(t_lemin *lemin);//rewrite this ?
 // right now its in the test_move ants but it should work the way i want to write it
+//
 /*
 ** testing
 */

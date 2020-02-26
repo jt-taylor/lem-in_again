@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 17:23:04 by jtaylor           #+#    #+#             */
-/*   Updated: 2020/02/25 21:48:56 by jtaylor          ###   ########.fr       */
+/*   Updated: 2020/02/25 22:44:26 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,15 +173,14 @@ void				test_bad_follow_path(t_lemin *lemin)
 {
 	t_branch		*test;
 
-	test = search_branch(lemin->shortest_path->tree->root, lemin->end);
+	test = lemin->shortest_path->end_br;
 	//change me
 	while (!true_if_all_ants_in_exit_room(lemin))
 	{
-		//bad_move_ants(lemin, test);
-		//print_ants_endturn(lemin);
+		bad_move_ants(lemin, test);
+		print_ants_endturn(lemin);
 	}
 }
-
 
 // TODO :: fix me lol
 // simple version for now that only finds one path
@@ -191,6 +190,8 @@ int					alg_main(t_lemin *lemin)
 	t_path		*path;
 
 	path = get_new_path(lemin);
+	path->end_br = search_branch(path->tree->root, lemin->end);
+	add_parent_nodes_to_tree(path->tree);
 	lemin->shortest_path = path;
 	if (lemin->shortest_path->has_end)
 	{
@@ -199,6 +200,6 @@ int					alg_main(t_lemin *lemin)
 		test_bad_follow_path(lemin);
 	}
 	else
-		;//handle no path to end error
+		ft_dprintf(2, "No path to end room was found\n");//handle no path to end error
 	return ((path) ? 1 : 0);
 }

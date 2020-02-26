@@ -6,12 +6,13 @@
 /*   By: marrodri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 18:25:28 by marrodri          #+#    #+#             */
-/*   Updated: 2020/02/25 18:32:57 by jtaylor          ###   ########.fr       */
+/*   Updated: 2020/02/25 22:29:19 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
+/* not sure where this is used
 t_branch	*get_parent(t_branch *root, t_branch *kid)
 {
 	t_branch *curr;
@@ -35,6 +36,7 @@ t_branch	*get_parent(t_branch *root, t_branch *kid)
 	}
 	return (NULL);
 }
+*/
 
 t_tree		*gen_tree_init(void)
 {
@@ -55,6 +57,7 @@ t_branch	*new_branch(void *cont)
 	new_branch->content = cont;
 	new_branch->kid = NULL;
 	new_branch->siblings = NULL;
+	new_branch->parent = NULL;
 	return (new_branch);
 }
 
