@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 21:49:29 by jtaylor           #+#    #+#             */
-/*   Updated: 2020/02/25 21:49:43 by jtaylor          ###   ########.fr       */
+/*   Updated: 2020/02/26 04:31:07 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,70 @@ void					print_ants_endturn(t_lemin *lemin)
 	}
 	if (flag_for_newline)
 		ft_printf("\n");
+}
+
+static int					index_of_ant_in_parent_room(t_lemin *lemin, struct s_node *node)
+{
+	int			i;
+
+	i = 0;
+	if (!node || !node->next)
+		return (-1);
+	while (i < lemin->total_ants)
+	{
+		if (lemin->ant_arr[i] == node->next->content)
+			return (i);
+		i++;
+	}
+	return (-1);
+}
+
+static inline void	follow_path(t_lemin *lemin, t_path_list *path)
+{
+	struct s_node		*tmp;
+	int					i;
+
+	tmp = path->first->content;
+	while (tmp)
+	{
+		i = index_of_ant_in_parent_room(lemin, tmp);
+		if (i > -1)
+		{
+			lemin->ant_arr[i] = (t_rooms *)tmp->content;
+			lemin->ant_was_moved[i] = 1;
+		}
+		tmp = tmp->next;
+	}
+}
+
+void				follow_path_list(t_lemin *lemin)
+{
+	t_all_paths		*tmp;
+	//struct s_node	*tmp_node;
+	//int				i;
+
+	tmp = lemin->all_paths;
+	//
+	follow_path(lemin, lemin->all_paths->path);
+	//
+	/*
+	while (tmp && tmp->path)
+	{
+		tmp_node = tmp->path->first;
+		if (tmp->ants_to_send)
+			;
+		while (tmp_node)
+		{
+			i = index_of_ant_in_parent_room(lemin, tmp_node);
+			if (i > -1)
+			{
+				lemin->ant_arr[i] = (t_rooms *)tmp_node->content;
+				lemin->ant_was_moved[i] = 1;
+			}
+			tmp_node = tmp_node->next;
+		}
+		//not sure where i want to do the ant calculate
+		tmp = tmp->next;
+	}
+	*/
 }

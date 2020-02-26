@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 17:23:04 by jtaylor           #+#    #+#             */
-/*   Updated: 2020/02/26 03:54:20 by jtaylor          ###   ########.fr       */
+/*   Updated: 2020/02/26 04:23:06 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -223,13 +223,11 @@ void				test_get_second_path(t_lemin *lemin)
 
 void				test_bad_follow_path(t_lemin *lemin)
 {
-	t_branch		*test;
-
-	test = lemin->shortest_path->end_br;
-	//change me
 	while (!true_if_all_ants_in_exit_room(lemin))
 	{
-		bad_move_ants(lemin, test);
+		//bad_move_ants(lemin, test);
+		ft_bzero(lemin->ant_was_moved, (lemin->total_ants + 1) * sizeof(int));
+		follow_path_list(lemin);
 		print_ants_endturn(lemin);
 	}
 }
@@ -243,6 +241,7 @@ t_all_paths		*init_s_all_paths(void)
 		exit(MALLOC_ERR);
 	new->path = 0;
 	new->path_weight = INT_MAX;
+	new->ants_to_send = 0;
 	new->next = 0;
 	return (new);
 }
@@ -296,14 +295,9 @@ int					alg_main(t_lemin *lemin)
 	//t_path		*path;
 
 	lemin->all_paths = get_all_paths(lemin);
-	if (lemin->shortest_path->has_end)
-	{
-		ant_arr_init(lemin);
-		// Fix me this is prrof of concept
-		test_bad_follow_path(lemin);
-	}
-	else
-		ft_dprintf(2, "No path to end room was found\n");//handle no path to end error
-	//return ((path) ? 1 : 0);
+	ant_arr_init(lemin);
+	ft_printf("\n");
+	// Fix me this is prrof of concept
+	test_bad_follow_path(lemin);
 	return (1);
 }
