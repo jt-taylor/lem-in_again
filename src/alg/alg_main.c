@@ -224,14 +224,32 @@ int					true_if_all_ants_in_exit_room(t_lemin *lemin)
 ** }
 */
 
+//calculate the total current paths availabe at the moment, ants on the current room
+
+void calculate_ants_foreach_path(t_lemin *lemin /*, current available paths*/)
+{
+	t_all_paths *tmp;
+	struct s_node *tmp_node;
+}
+
+
 void				test_bad_follow_path(t_lemin *lemin)
 {
 	while (!true_if_all_ants_in_exit_room(lemin))
 	{
 		//bad_move_ants(lemin, test);
+
+				//bad_move_ants(lemin, test);
+
+		// add a calculator that checks the current ants on the start room, 
+		// check the longest path depth - the next_longest path depth based from the ants, 
+		// to stop using the current longest path, overtime each long path it will be closed
+		// until the shortest path is only available for the current ants
+		// if there is only one ant in the room, use the first shortest path founded, for that ant only
 		ft_bzero(lemin->ant_was_moved, ((lemin->total_ants) * sizeof(int)));
 		follow_path_list(lemin);
 		print_ants_endturn(lemin);
+		// calculate_paths(lemin);
 	}
 }
 
@@ -307,3 +325,6 @@ int					alg_main(t_lemin *lemin)
 	test_bad_follow_path(lemin);
 	return (1);
 }
+
+
+
