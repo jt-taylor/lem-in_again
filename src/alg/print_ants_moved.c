@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 21:49:29 by jtaylor           #+#    #+#             */
-/*   Updated: 2020/02/26 13:34:43 by jtaylor          ###   ########.fr       */
+/*   Updated: 2020/02/26 16:33:26 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,31 +69,21 @@ static inline void	follow_path(t_lemin *lemin, t_path_list *path)
 void				follow_path_list(t_lemin *lemin)
 {
 	t_all_paths		*tmp;
-	//struct s_node	*tmp_node;
+	struct s_node	*tmp_node;
 	//int				i;
 
 	tmp = lemin->all_paths;
+	// for testing that it actually follows the path in the ll ; 
+	// need to write the functionality to split the path on the concurrent nodes
+	//follow_path(lemin, lemin->all_paths->path);
 	//
-	follow_path(lemin, lemin->all_paths->path);
-	//
-	/*
 	while (tmp && tmp->path)
 	{
 		tmp_node = tmp->path->first;
-		if (tmp->ants_to_send)
-			;
-		while (tmp_node)
-		{
-			i = index_of_ant_in_parent_room(lemin, tmp_node);
-			if (i > -1)
-			{
-				lemin->ant_arr[i] = (t_rooms *)tmp_node->content;
-				lemin->ant_was_moved[i] = 1;
-			}
-			tmp_node = tmp_node->next;
-		}
+//		if (tmp->ants_to_send)
+//			;
+		follow_path(lemin, tmp->path);
 		//not sure where i want to do the ant calculate
 		tmp = tmp->next;
 	}
-	*/
 }

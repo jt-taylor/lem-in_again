@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 17:23:04 by jtaylor           #+#    #+#             */
-/*   Updated: 2020/02/26 13:30:51 by jtaylor          ###   ########.fr       */
+/*   Updated: 2020/02/26 16:28:27 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -213,13 +213,16 @@ int					true_if_all_ants_in_exit_room(t_lemin *lemin)
 	return (1);
 }
 
-void				test_get_second_path(t_lemin *lemin)
-{
-	t_path		*path;
-
-	path = get_new_path(lemin);
-	// wow such great tests
-}
+/*
+**
+** void				test_get_second_path(t_lemin *lemin)
+** {
+** 	t_path		*path;
+**
+** 	path = get_new_path(lemin);
+** 	// wow such great tests
+** }
+*/
 
 void				test_bad_follow_path(t_lemin *lemin)
 {
@@ -298,6 +301,7 @@ int					alg_main(t_lemin *lemin)
 	ant_arr_init(lemin);
 	ft_printf("\n");
 	// Fix me this is prrof of concept
+	path_list_split_on_shared_nodes(lemin);
 	test_bad_follow_path(lemin);
 	return (1);
 }

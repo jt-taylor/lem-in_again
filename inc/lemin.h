@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 09:53:58 by jtaylor           #+#    #+#             */
-/*   Updated: 2020/02/26 13:34:15 by jtaylor          ###   ########.fr       */
+/*   Updated: 2020/02/26 15:12:27 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,14 @@ typedef struct	s_all_paths
 	struct s_all_paths		*next;
 }				t_all_paths;
 
+typedef struct	s_split_path
+{
+	struct s_node	*p1_start_lim;
+	struct s_node	*p1_end_lim;
+	struct s_node	*p2_start_lim;
+	struct s_node	*p2_end_lim;
+}				t_split_path;
+
 typedef struct	s_lemin
 {
 	int			total_ants;
@@ -223,6 +231,7 @@ void			update_rooms_with_path_info(t_lemin *lemin, t_path *path);
 void			print_ants_endturn(t_lemin *lemin);//rewrite this ?
 t_path_list		*convert_path_to_list(t_lemin *lemin, t_path *path);
 void			follow_path_list(t_lemin *lemin);
+void			path_list_split_on_shared_nodes(t_lemin *lemin);
 // right now its in the test_move ants but it should work the way i want to write it
 //
 /*
