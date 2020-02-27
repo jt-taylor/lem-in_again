@@ -6,13 +6,13 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 17:01:47 by jtaylor           #+#    #+#             */
-/*   Updated: 2020/02/26 02:20:13 by jtaylor          ###   ########.fr       */
+/*   Updated: 2020/02/26 23:37:39 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-t_rooms				*room_name_checker(t_rooms *rooms, char *room)
+t_rooms			*room_name_checker(t_rooms *rooms, char *room)
 {
 	t_rooms *curr;
 
@@ -53,7 +53,7 @@ t_rooms			*new_room_node(t_rooms *current_room, t_lemin *lemin)
 
 	tmp = (t_rooms *)malloc(sizeof(t_rooms));
 	if (!tmp)
-		;// handle fail to alloc
+		exit(MALLOC_ERR);
 	init_room(tmp);
 	if (current_room == 0)
 	{

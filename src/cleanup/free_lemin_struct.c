@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 10:38:02 by jtaylor           #+#    #+#             */
-/*   Updated: 2020/02/26 23:18:34 by jtaylor          ###   ########.fr       */
+/*   Updated: 2020/02/26 23:35:25 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,12 @@ void			lemin_free_rooms(t_lemin *lemin)
 }
 
 /*
-static void		lemin_free_path(t_lemin *lemin)
-{
-	free(lemin->current_best_group->paths_in_list);
-	free(lemin->paths);
-	lemin->paths = 0;
-}
+** static void		lemin_free_path(t_lemin *lemin)
+** {
+** 	free(lemin->current_best_group->paths_in_list);
+** 	free(lemin->paths);
+** 	lemin->paths = 0;
+** }
 */
 
 void			lemin_free_links(t_lemin *lemin)
@@ -61,8 +61,6 @@ void			lemin_free_links(t_lemin *lemin)
 	while (tmp)
 	{
 		to_del = tmp;
-//		free(tmp->room1);
-//		free(tmp->room2);
 		tmp = tmp->next;
 		free(to_del);
 	}
@@ -80,6 +78,5 @@ void			free_lemin_struct(t_lemin *lemin)
 	lemin_free_rooms(lemin);
 	lemin_free_links(lemin);
 	free_all_paths(lemin);
-	//free_path_struct(lemin->shortest_path);
 	lemin->ant_arr = 0;
 }

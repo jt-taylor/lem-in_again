@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 17:17:59 by jtaylor           #+#    #+#             */
-/*   Updated: 2020/02/25 23:38:01 by jtaylor          ###   ########.fr       */
+/*   Updated: 2020/02/26 23:36:46 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,13 @@ static inline void	print_branch_children(t_branch *root)
 	t_branch	*tmp;
 
 	tmp = root;
-	ft_dprintf(2, "\tBP:%p\tContent::%s\n", root, (char *)((t_rooms *)root->content)->room_name);
+	ft_dprintf(2, "\tBP:%p\tContent::%s\n", root,
+			(char *)((t_rooms *)root->content)->room_name);
 	tmp = tmp->siblings;
 	while (tmp)
 	{
-		ft_dprintf(2, "\t\tSIB:%p\tContent::%s\n", tmp, (char *)((t_rooms *)tmp->content)->room_name);
+		ft_dprintf(2, "\t\tSIB:%p\tContent::%s\n", tmp,
+				(char *)((t_rooms *)tmp->content)->room_name);
 		tmp = tmp->siblings;
 	}
 }
