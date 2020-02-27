@@ -6,7 +6,7 @@
 #    By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/16 19:30:49 by jtaylor           #+#    #+#              #
-#    Updated: 2020/02/26 15:13:18 by jtaylor          ###   ########.fr        #
+#    Updated: 2020/02/26 21:21:25 by jtaylor          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,9 @@ SRC_FILE =		main.c \
 				debug/print_tree_contents.c \
 				cleanup/free_lemin_struct.c \
 				cleanup/free_queue.c \
+				cleanup/free_path_struct.c \
+				cleanup/free_lemin_tree.c \
+				cleanup/free_all_paths_struct.c \
 				alg/alg_main.c \
 				alg/update_residual_path.c \
 				alg/print_ants_moved.c \

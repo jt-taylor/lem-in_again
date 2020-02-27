@@ -6,14 +6,15 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 17:21:32 by jtaylor           #+#    #+#             */
-/*   Updated: 2020/02/26 00:33:22 by jtaylor          ###   ########.fr       */
+/*   Updated: 2020/02/26 21:40:08 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
+
 /*
-** for norme
+** ?
 */
 
 static inline void	parse_link_inner(t_lemin *lemin, char **rooms)
@@ -62,6 +63,6 @@ void				parse_links(t_lemin *lemin, char *line)
 		ft_freestrarr(rooms);
 		exit(PARSING_ERR);
 	}
-	free(rooms);
+	ft_freestrarr(rooms);
 	parse_link_inner(lemin, rooms);
 }

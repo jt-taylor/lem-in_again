@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 09:53:58 by jtaylor           #+#    #+#             */
-/*   Updated: 2020/02/26 15:12:27 by jtaylor          ###   ########.fr       */
+/*   Updated: 2020/02/26 21:21:07 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include <stdio.h>
 
 # define MALLOC_ERR 0x01
+# define CLEANUP_ERR 0x02
 # define PARSING_ERR 0x04
 
 /*
@@ -136,8 +137,9 @@ typedef struct	s_lemin
 	int			room_count;
 	int			*ant_was_moved;
 	void		**ant_arr;
-	t_queue		*queue;
-	t_path		*shortest_path;
+	t_queue		*queue;// do we use this ?
+	t_path		*shortest_path;// Fix in add_path_to_all_path_list
+	//						TODO copy the ^^ list to save the shortest path
 	t_link		*links;
 	t_link		*last_link;
 	t_rooms		*start;
@@ -198,6 +200,9 @@ void			free_lemin_struct(t_lemin *lemin);
 void			lemin_free_links(t_lemin *lemin);
 void			lemin_free_rooms(t_lemin *lemin);
 void			clear_queue(struct s_queue *queue);
+void			free_lemin_tree(t_tree *to_free);
+void			free_path_struct(t_path *path);
+void			free_all_paths(t_lemin *lemin);
 
 /*
 ** Queue -----------------------------------------------------------------------

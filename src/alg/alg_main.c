@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 17:23:04 by jtaylor           #+#    #+#             */
-/*   Updated: 2020/02/26 16:28:27 by jtaylor          ###   ########.fr       */
+/*   Updated: 2020/02/26 20:55:55 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -263,6 +263,8 @@ void			add_path_to_all_path_list(t_lemin *lemin, t_all_paths *list, t_path *path
 		tmp->next = init_s_all_paths();
 		tmp->next->path = convert_path_to_list(lemin, path);
 	}
+	free_path_struct(path);
+	path = 0;
 }
 
 t_all_paths		*get_all_paths(t_lemin *lemin)

@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 09:55:24 by jtaylor           #+#    #+#             */
-/*   Updated: 2020/02/25 19:41:02 by jtaylor          ###   ########.fr       */
+/*   Updated: 2020/02/26 21:07:14 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int					main(void)
 		move_ants_along_path_list(&lemin, lemin.current_best_group);
 		print_ants_endturn(&lemin);
 	}
-	//free_lemin_struct(&lemin);
 	*/
+	free_lemin_struct(&lemin);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 10:38:02 by jtaylor           #+#    #+#             */
-/*   Updated: 2020/02/25 20:44:24 by jtaylor          ###   ########.fr       */
+/*   Updated: 2020/02/26 21:22:40 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,6 @@ void			free_lemin_struct(t_lemin *lemin)
 	lemin_free_ant(lemin);
 	lemin_free_rooms(lemin);
 	lemin_free_links(lemin);
+	free_all_paths(lemin);
 	lemin->ant_arr = 0;
 }
