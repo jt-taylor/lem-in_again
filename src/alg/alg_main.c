@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 17:23:04 by jtaylor           #+#    #+#             */
-/*   Updated: 2020/02/26 23:14:29 by jtaylor          ###   ########.fr       */
+/*   Updated: 2020/02/27 13:18:20 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -226,11 +226,11 @@ int					true_if_all_ants_in_exit_room(t_lemin *lemin)
 
 //calculate the total current paths availabe at the moment, ants on the current room
 
-void calculate_ants_foreach_path(t_lemin *lemin /*, current available paths*/)
-{
-	t_all_paths *tmp;
-	struct s_node *tmp_node;
-}
+//void calculate_ants_foreach_path(t_lemin *lemin /*, current available paths*/)
+//{
+//	t_all_paths *tmp;
+//	struct s_node *tmp_node;
+//}
 
 
 void				test_bad_follow_path(t_lemin *lemin)
@@ -289,24 +289,25 @@ t_all_paths		*get_all_paths(t_lemin *lemin)
 {
 	t_all_paths			*list;
 	t_path				*tmp;
+	int					paths_found;
 
 	list = init_s_all_paths();
 	tmp = get_new_path(lemin);
-	//for testing while unfinished remove me later
+	paths_found = 1;
 	lemin->shortest_path = tmp;
 	if (!tmp)
 	{
 		ft_dprintf(2, "No path to end room was found\n");
-		//free the things
-		exit(02);//handle no path to exit
+		exit(2);
 	}
 	while (tmp)
 	{
 		add_path_to_all_path_list(lemin, list, tmp);
-		//free tmp
 		tmp = get_new_path(lemin);
+		if (paths_found == lemin->total_ants)
+			break ;
+		paths_found++;
 	}
-	//free tmp
 	return (list);
 }
 
