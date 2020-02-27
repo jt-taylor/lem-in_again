@@ -6,7 +6,7 @@
 #    By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/16 19:30:49 by jtaylor           #+#    #+#              #
-#    Updated: 2020/02/27 14:04:48 by jtaylor          ###   ########.fr        #
+#    Updated: 2020/02/27 15:04:24 by jtaylor          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,7 @@ SRC_FILE =		main.c \
 				errors/parsing_erorrs.c \
 				debug/print_queue.c \
 				debug/print_tree_contents.c \
+				debug/print_path_list_values.c \
 				cleanup/free_lemin_struct.c \
 				cleanup/free_queue.c \
 				cleanup/free_path_struct.c \

@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 09:53:58 by jtaylor           #+#    #+#             */
-/*   Updated: 2020/02/27 14:12:19 by jtaylor          ###   ########.fr       */
+/*   Updated: 2020/02/27 15:22:21 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,7 @@ typedef struct	s_all_paths
 	t_path_list				*path;
 	int						path_weight;
 	int						ants_to_send;
+	int						to_use;
 	struct s_all_paths		*next;
 }				t_all_paths;
 
@@ -190,6 +191,7 @@ void			failed_read_start_end_room(t_lemin *lemin,
 void			print_queue(t_queue *queue);
 void			print_tree_contents(t_tree *tree,
 					t_branch *specified_branch);
+void			print_path_list(t_all_paths *path_list);
 
 /*
 ** Cleanup ---------------------------------------------------------------------

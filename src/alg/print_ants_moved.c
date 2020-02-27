@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 21:49:29 by jtaylor           #+#    #+#             */
-/*   Updated: 2020/02/27 14:25:56 by jtaylor          ###   ########.fr       */
+/*   Updated: 2020/02/27 15:24:00 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,8 @@ void				follow_path_list(t_lemin *lemin)
 		tmp_node = tmp->path->first;
 //		if (tmp->ants_to_send)
 //			;
-		follow_path(lemin, tmp->path, tmp);
+		if (tmp->to_use)
+			follow_path(lemin, tmp->path, tmp);
 		//not sure where i want to do the ant calculate
 		tmp = tmp->next;
 	}
