@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 17:23:04 by jtaylor           #+#    #+#             */
-/*   Updated: 2020/02/26 20:55:55 by jtaylor          ###   ########.fr       */
+/*   Updated: 2020/02/26 23:14:29 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,7 +179,7 @@ t_path				*get_new_path(t_lemin *lemin)
 	}
 	else
 	{
-		//free the things;
+		free_path_struct(path);
 		return (0);
 	}
 	return (path);

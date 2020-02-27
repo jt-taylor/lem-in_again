@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 09:53:58 by jtaylor           #+#    #+#             */
-/*   Updated: 2020/02/26 21:21:07 by jtaylor          ###   ########.fr       */
+/*   Updated: 2020/02/26 23:18:03 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ typedef struct	s_branch
 
 typedef struct	s_tree
 {
-	struct s_branch *root;
+;struct s_branch *root;
 }				t_tree;
 
 /*

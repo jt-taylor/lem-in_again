@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 13:47:37 by jtaylor           #+#    #+#             */
-/*   Updated: 2020/02/26 16:11:43 by jtaylor          ###   ########.fr       */
+/*   Updated: 2020/02/26 22:29:22 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,15 +58,33 @@ struct s_node	*get_first_dup(struct s_node *node_from_other_path,
 	return (0);
 }
 
-void			free_inbetween_nodes_in_swap()//fill me in ;
+void			free_inbetween_nodes_in_swap(t_split_path *s)
 {
-	;//
+	struct s_node		*tmp;
+	struct s_node		*to_free;
+
+	tmp = s->p1_start_lim;
+	while (tmp)
+	{
+		if (tmp == s->p1_end_lim)
+			break ;
+		to_free = tmp;
+		tmp = tmp->next;
+		free(to_free);
+	}
+	tmp = s->p2_start_lim;	while (tmp)
+	{
+		if (tmp == s->p2_end_lim)
+			break ;
+		to_free = tmp;
+		tmp = tmp->next;
+		free(to_free);
+	}
 }
 
 static void		swap_nodes(t_split_path *s, t_path_list *p1, t_path_list *p2)
 {
 	struct s_node		*tmp;
-	//struct s_node		*swap;
 
 	tmp = p1->first;
 	while (tmp && tmp->next != s->p1_start_lim)
@@ -76,7 +94,7 @@ static void		swap_nodes(t_split_path *s, t_path_list *p1, t_path_list *p2)
 	while (tmp && tmp->next != s->p2_start_lim)
 		tmp = tmp->next;
 	tmp->next = s->p1_end_lim;
-	//when the are nodes in betweem the limits we need to free them
+	free_inbetween_nodes_in_swap(s);
 }
 
 void			get_path_limits(t_path_list *p1, t_path_list *p2,
