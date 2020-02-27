@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 21:49:29 by jtaylor           #+#    #+#             */
-/*   Updated: 2020/02/26 16:33:26 by jtaylor          ###   ########.fr       */
+/*   Updated: 2020/02/27 14:25:56 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static int					index_of_ant_in_parent_room(t_lemin *lemin, struct s_node *node)
 	return (-1);
 }
 
-static inline void	follow_path(t_lemin *lemin, t_path_list *path)
+static inline void	follow_path(t_lemin *lemin, t_path_list *path, t_all_paths *check)
 {
 	struct s_node		*tmp;
 	int					i;
@@ -59,6 +59,13 @@ static inline void	follow_path(t_lemin *lemin, t_path_list *path)
 		i = index_of_ant_in_parent_room(lemin, tmp);
 		if (i > -1)
 		{
+			if ((t_rooms *)tmp->next->content == lemin->start)
+			{
+				if (check->ants_to_send > 0)
+					check->ants_to_send--;
+				else
+					break ;
+			}
 			lemin->ant_arr[i] = (t_rooms *)tmp->content;
 			lemin->ant_was_moved[i] = 1;
 		}
@@ -82,7 +89,7 @@ void				follow_path_list(t_lemin *lemin)
 		tmp_node = tmp->path->first;
 //		if (tmp->ants_to_send)
 //			;
-		follow_path(lemin, tmp->path);
+		follow_path(lemin, tmp->path, tmp);
 		//not sure where i want to do the ant calculate
 		tmp = tmp->next;
 	}

@@ -6,7 +6,7 @@
 #    By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/16 19:30:49 by jtaylor           #+#    #+#              #
-#    Updated: 2020/02/26 21:21:25 by jtaylor          ###   ########.fr        #
+#    Updated: 2020/02/27 14:04:48 by jtaylor          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,8 @@ SRC_FILE =		main.c \
 				alg/print_ants_moved.c \
 				alg/test_move_ants.c \
 				alg/path_list_split_on_shared_nodes.c \
-				alg/path_struct_to_list.c
+				alg/path_struct_to_list.c \
+				alg/ants_per_path.c
 
 SRC = $(addprefix ./src/, $(SRC_FILE))
 

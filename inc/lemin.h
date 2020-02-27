@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 09:53:58 by jtaylor           #+#    #+#             */
-/*   Updated: 2020/02/26 23:18:03 by jtaylor          ###   ########.fr       */
+/*   Updated: 2020/02/27 14:12:19 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -237,6 +237,8 @@ void			print_ants_endturn(t_lemin *lemin);//rewrite this ?
 t_path_list		*convert_path_to_list(t_lemin *lemin, t_path *path);
 void			follow_path_list(t_lemin *lemin);
 void			path_list_split_on_shared_nodes(t_lemin *lemin);
+void			ants_per_path(t_lemin *lemin);
+
 // right now its in the test_move ants but it should work the way i want to write it
 //
 /*
