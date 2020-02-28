@@ -6,13 +6,13 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 11:47:45 by jtaylor           #+#    #+#             */
-/*   Updated: 2020/02/26 20:40:20 by jtaylor          ###   ########.fr       */
+/*   Updated: 2020/02/27 18:20:15 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-static void			tree_free_branch_recur(t_branch *root)
+static void		tree_free_branch_recur(t_branch *root)
 {
 	struct s_branch	*tmp;
 	struct s_branch	*to_del;

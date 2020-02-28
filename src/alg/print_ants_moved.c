@@ -6,13 +6,13 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 21:49:29 by jtaylor           #+#    #+#             */
-/*   Updated: 2020/02/27 15:24:00 by jtaylor          ###   ########.fr       */
+/*   Updated: 2020/02/27 18:29:15 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-void					print_ants_endturn(t_lemin *lemin)
+void				print_ants_endturn(t_lemin *lemin)
 {
 	int		i;
 	int		flag_for_newline;
@@ -23,7 +23,8 @@ void					print_ants_endturn(t_lemin *lemin)
 	{
 		if (lemin->ant_was_moved[i])
 		{
-			ft_printf("L%d-%s ", i + 1, (char *)((t_rooms *)lemin->ant_arr[i])->room_name);
+			ft_printf("L%d-%s ", i + 1,
+					(char *)((t_rooms *)lemin->ant_arr[i])->room_name);
 			flag_for_newline = 1;
 		}
 		i++;
@@ -32,7 +33,8 @@ void					print_ants_endturn(t_lemin *lemin)
 		ft_printf("\n");
 }
 
-static int					index_of_ant_in_parent_room(t_lemin *lemin, struct s_node *node)
+static int			index_of_ant_in_parent_room(t_lemin *lemin,
+		struct s_node *node)
 {
 	int			i;
 
@@ -48,7 +50,8 @@ static int					index_of_ant_in_parent_room(t_lemin *lemin, struct s_node *node)
 	return (-1);
 }
 
-static inline void	follow_path(t_lemin *lemin, t_path_list *path, t_all_paths *check)
+static inline void	follow_path(t_lemin *lemin, t_path_list *path,
+		t_all_paths *check)
 {
 	struct s_node		*tmp;
 	int					i;
@@ -77,21 +80,13 @@ void				follow_path_list(t_lemin *lemin)
 {
 	t_all_paths		*tmp;
 	struct s_node	*tmp_node;
-	//int				i;
 
 	tmp = lemin->all_paths;
-	// for testing that it actually follows the path in the ll ; 
-	// need to write the functionality to split the path on the concurrent nodes
-	//follow_path(lemin, lemin->all_paths->path);
-	//
 	while (tmp && tmp->path)
 	{
 		tmp_node = tmp->path->first;
-//		if (tmp->ants_to_send)
-//			;
 		if (tmp->to_use)
 			follow_path(lemin, tmp->path, tmp);
-		//not sure where i want to do the ant calculate
 		tmp = tmp->next;
 	}
 }

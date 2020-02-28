@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 02:37:58 by jtaylor           #+#    #+#             */
-/*   Updated: 2020/02/26 03:04:35 by jtaylor          ###   ########.fr       */
+/*   Updated: 2020/02/27 18:27:01 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,10 @@ static void					add_to_list(t_path_list *path, t_rooms *content)
 
 t_path_list					*convert_path_to_list(t_lemin *lemin, t_path *path)
 {
-	(void)lemin;
 	t_path_list		*l;
 	t_branch		*tmp;
 
+	(void)lemin;
 	l = init_path_list();
 	if (!path->end_br)
 	{

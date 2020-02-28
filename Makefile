@@ -6,7 +6,7 @@
 #    By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/16 19:30:49 by jtaylor           #+#    #+#              #
-#    Updated: 2020/02/27 15:04:24 by jtaylor          ###   ########.fr        #
+#    Updated: 2020/02/27 18:53:57 by jtaylor          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,10 +48,13 @@ SRC_FILE =		main.c \
 				cleanup/free_lemin_tree.c \
 				cleanup/free_all_paths_struct.c \
 				alg/alg_main.c \
+				alg/alg_misc_functions.c \
+				alg/alg_get_path.c \
+				alg/alg_populate_path.c \
 				alg/update_residual_path.c \
 				alg/print_ants_moved.c \
-				alg/test_move_ants.c \
 				alg/path_list_split_on_shared_nodes.c \
+				alg/split_path_helper_func.c \
 				alg/path_struct_to_list.c \
 				alg/ants_per_path.c
 

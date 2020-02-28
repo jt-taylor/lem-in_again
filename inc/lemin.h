@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 09:53:58 by jtaylor           #+#    #+#             */
-/*   Updated: 2020/02/27 15:22:21 by jtaylor          ###   ########.fr       */
+/*   Updated: 2020/02/27 19:10:36 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ typedef struct	s_branch
 
 typedef struct	s_tree
 {
-;struct s_branch *root;
+	struct s_branch *root;
 }				t_tree;
 
 /*
@@ -83,13 +83,12 @@ typedef struct	s_rooms
 	int				to_use_start;
 	struct s_rooms	*next;
 	struct s_rooms	*prev;
-	//void			*ant_arr;
 }				t_rooms;
 
 typedef struct	s_link
 {
 	t_rooms			*room1;
-	t_rooms		*room2;
+	t_rooms			*room2;
 	struct s_link	*next;
 }				t_link;
 
@@ -138,9 +137,8 @@ typedef struct	s_lemin
 	int			room_count;
 	int			*ant_was_moved;
 	void		**ant_arr;
-	t_queue		*queue;// do we use this ?
-	t_path		*shortest_path;// Fix in add_path_to_all_path_list
-	//						TODO copy the ^^ list to save the shortest path
+	t_queue		*queue;
+	t_path		*shortest_path;
 	t_link		*links;
 	t_link		*last_link;
 	t_rooms		*start;
@@ -235,18 +233,21 @@ void			add_parent_nodes_to_tree(t_tree *tree);
 
 int				alg_main(t_lemin *lemin);
 void			update_rooms_with_path_info(t_lemin *lemin, t_path *path);
-void			print_ants_endturn(t_lemin *lemin);//rewrite this ?
+void			print_ants_endturn(t_lemin *lemin);
 t_path_list		*convert_path_to_list(t_lemin *lemin, t_path *path);
 void			follow_path_list(t_lemin *lemin);
 void			path_list_split_on_shared_nodes(t_lemin *lemin);
 void			ants_per_path(t_lemin *lemin);
-
-// right now its in the test_move ants but it should work the way i want to write it
-//
-/*
-** testing
-*/
-
-void		bad_move_ants(t_lemin *lemin, t_branch *end);
+void			reset_split_path(t_split_path *s);
+int				true_if_all_ants_in_exit_room(t_lemin *lemin);
+void			ant_arr_init(t_lemin *lemin);
+void			populate_path(t_lemin *lemin, t_path *path);
+int				check_pointers_in_arr(void **arr, void *target, int lim);
+void			populate_path_start_room(t_lemin *lemin, t_path *path);
+t_all_paths		*get_all_paths(t_lemin *lemin);
+void			get_path_limits(t_path_list *p1, t_path_list *p2,
+					t_split_path *s);
+struct s_node	*get_first_dup(struct s_node *node_from_other_path,
+					t_path_list *path, t_split_path *s, int i);
 
 #endif

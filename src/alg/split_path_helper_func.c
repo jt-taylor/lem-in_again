@@ -1,38 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   split_path_helper_func.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/21 09:55:24 by jtaylor           #+#    #+#             */
-/*   Updated: 2020/02/27 18:20:36 by jtaylor          ###   ########.fr       */
+/*   Created: 2020/02/27 18:31:04 by jtaylor           #+#    #+#             */
+/*   Updated: 2020/02/27 18:31:15 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-static inline void	init_struct(t_lemin *lemin)
+void			get_path_limits(t_path_list *p1, t_path_list *p2,
+		t_split_path *s)
 {
-	lemin->total_ants = 0;
-	lemin->room_count = 0;
-	lemin->ant_was_moved = 0;
-	lemin->ant_arr = 0;
-	lemin->links = 0;
-	lemin->last_link = 0;
-	lemin->start = 0;
-	lemin->end = 0;
-	lemin->current_room = 0;
-	lemin->rooms = 0;
+	get_first_dup(p1->first->next, p2, s, 1);
+	get_first_dup(p2->first->next, p1, s, 0);
 }
 
-int					main(void)
+void			reset_split_path(t_split_path *s)
 {
-	t_lemin		lemin;
-
-	init_struct(&lemin);
-	parser_main(&lemin);
-	alg_main(&lemin);
-	free_lemin_struct(&lemin);
-	return (0);
+	s->p1_start_lim = 0;
+	s->p1_end_lim = 0;
+	s->p2_start_lim = 0;
+	s->p2_end_lim = 0;
 }

@@ -1,38 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   alg_misc_functions.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/21 09:55:24 by jtaylor           #+#    #+#             */
-/*   Updated: 2020/02/27 18:20:36 by jtaylor          ###   ########.fr       */
+/*   Created: 2020/02/27 18:45:53 by jtaylor           #+#    #+#             */
+/*   Updated: 2020/02/27 18:46:59 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-static inline void	init_struct(t_lemin *lemin)
+void				ant_arr_init(t_lemin *lemin)
 {
-	lemin->total_ants = 0;
-	lemin->room_count = 0;
-	lemin->ant_was_moved = 0;
-	lemin->ant_arr = 0;
-	lemin->links = 0;
-	lemin->last_link = 0;
-	lemin->start = 0;
-	lemin->end = 0;
-	lemin->current_room = 0;
-	lemin->rooms = 0;
+	int i;
+
+	i = 0;
+	lemin->ant_arr = malloc(sizeof(void *) * (lemin->total_ants + 1));
+	lemin->ant_arr[lemin->total_ants] = NULL;
+	while (i < lemin->total_ants)
+	{
+		lemin->ant_arr[i] = lemin->start;
+		i++;
+	}
 }
 
-int					main(void)
+int					true_if_all_ants_in_exit_room(t_lemin *lemin)
 {
-	t_lemin		lemin;
+	int		i;
 
-	init_struct(&lemin);
-	parser_main(&lemin);
-	alg_main(&lemin);
-	free_lemin_struct(&lemin);
-	return (0);
+	i = 0;
+	while (i < lemin->total_ants)
+	{
+		if (lemin->ant_arr[i] != lemin->end)
+			return (0);
+		i++;
+	}
+	return (1);
 }

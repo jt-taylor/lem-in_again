@@ -6,17 +6,18 @@
 /*   By: marrodri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 18:25:28 by marrodri          #+#    #+#             */
-/*   Updated: 2020/02/26 23:35:57 by jtaylor          ###   ########.fr       */
+/*   Updated: 2020/02/27 18:19:35 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-/* not sure where this is used
+/*
+** not sure where this is used
 ** t_branch	*get_parent(t_branch *root, t_branch *kid)
 ** {
 ** 	t_branch *curr;
-** 
+**
 ** 	curr = NULL;
 ** 	if (root)
 ** 	{
