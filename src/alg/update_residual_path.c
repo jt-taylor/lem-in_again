@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 22:58:03 by jtaylor           #+#    #+#             */
-/*   Updated: 2020/02/27 18:21:54 by jtaylor          ###   ########.fr       */
+/*   Updated: 2020/02/27 20:44:51 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ static inline void	toggle_to_use(t_lemin *lemin, t_path *path, t_branch
 	if (one_before_end->parent->content == lemin->start)
 	{
 		((t_rooms *)one_before_end->content)->to_use_start = 0;
+		//((t_rooms *)one_before_end->content)->to_use = 0;
 	}
 }
 

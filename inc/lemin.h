@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 09:53:58 by jtaylor           #+#    #+#             */
-/*   Updated: 2020/02/27 19:10:36 by jtaylor          ###   ########.fr       */
+/*   Updated: 2020/02/27 20:04:37 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ typedef struct	s_path
 	struct s_queue		*q;
 	int					i;
 	int					has_end;
+	int					handle_first_back_room;
 	t_branch			*end_br;
 	t_tree				*tree;
 }				t_path;

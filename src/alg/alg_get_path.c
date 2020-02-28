@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 18:47:31 by jtaylor           #+#    #+#             */
-/*   Updated: 2020/02/27 18:51:35 by jtaylor          ###   ########.fr       */
+/*   Updated: 2020/02/27 20:33:39 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ t_path			*init_new_path(t_lemin *lemin)
 	new_path->tree = gen_tree_init();
 	new_path->room_to_check = 0;
 	new_path->has_end = 0;
+	new_path->handle_first_back_room = 0;
 	return (new_path);
 }
 

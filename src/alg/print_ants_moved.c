@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 21:49:29 by jtaylor           #+#    #+#             */
-/*   Updated: 2020/02/27 18:29:15 by jtaylor          ###   ########.fr       */
+/*   Updated: 2020/02/27 19:48:08 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static inline void	follow_path(t_lemin *lemin, t_path_list *path,
 				if (check->ants_to_send > 0)
 					check->ants_to_send--;
 				else
-					break ;
+					return ;
 			}
 			lemin->ant_arr[i] = (t_rooms *)tmp->content;
 			lemin->ant_was_moved[i] = 1;
