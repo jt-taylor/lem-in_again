@@ -43,6 +43,7 @@ SRC_FILE =		main.c \
 				debug/print_tree_contents.c \
 				debug/print_path_list_values.c \
 				debug/t.c \
+				debug/print_all_paths.c\
 				cleanup/free_lemin_struct.c \
 				cleanup/free_queue.c \
 				cleanup/free_path_struct.c \

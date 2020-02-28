@@ -191,6 +191,7 @@ void			print_queue(t_queue *queue);
 void			print_tree_contents(t_tree *tree,
 					t_branch *specified_branch);
 void			print_path_list(t_all_paths *path_list);
+void			print_all_paths(t_all_paths *path_list);
 
 /*
 ** Cleanup ---------------------------------------------------------------------
