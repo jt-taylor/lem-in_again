@@ -20,7 +20,7 @@ void		print_path_list(t_all_paths *path_list)
 	while (tmp)
 	{
 		if (tmp->to_use)
-			ft_dprintf(2, "\n%s::\nWeight = %d\nto_Send = %d\nAGG = %d\n",
+			ft_printf("\n%s::\nWeight = %d\nto_Send = %d\nAGG = %d\n",
 				((t_rooms *)tmp->path->first->next->content)->room_name,
 				tmp->path_weight, tmp->ants_to_send, (tmp->path_weight +
 					tmp->ants_to_send));

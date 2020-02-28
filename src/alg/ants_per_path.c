@@ -47,14 +47,18 @@ static void				get_len_for_all_paths(t_all_paths *path_list)
 ** then after you can just add one to the whole path list for the remaining ants
 */
 
+
+
 void				distribute_ants_along_paths(t_lemin *lemin,
 		t_all_paths *path_list)
 {
 	int					i;
 	t_all_paths			*tmp;
 	t_all_paths			*min;
-
+	//add another t_all_path list of previous added minimum
 	i = 0;
+	ft_printf("!!!!path list before update:\n");
+	print_path_list(path_list);
 	while (i < lemin->total_ants)
 	{
 		tmp = path_list;
@@ -62,12 +66,19 @@ void				distribute_ants_along_paths(t_lemin *lemin,
 		while (tmp)
 		{
 			if ((min->path_weight + min->ants_to_send) > (tmp->path_weight + tmp->ants_to_send))
+			{
+
 				min = tmp;
+				// ft_printf("setting ants to new min weight:%d, ants:%d, PV:%d\n", min->path_weight, min->ants_to_send, 
+					// min->path_weight + min->ants_to_send);
+			}
 			tmp = tmp->next;
 		}
 		min->ants_to_send++;
 		i++;
 	}
+	ft_printf("\n+++++++path list after update+++++++++:\n");
+	print_path_list(path_list);
 }
 
 static void				toggle_paths_with_0_ants_to_send(t_all_paths *path_list)
