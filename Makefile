@@ -6,7 +6,7 @@
 #    By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/16 19:30:49 by jtaylor           #+#    #+#              #
-#    Updated: 2020/02/27 18:53:57 by jtaylor          ###   ########.fr        #
+#    Updated: 2020/02/27 23:08:46 by jtaylor          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = lem-in
 
 FLAGS = -Wall -Wextra -Werror
 
-OPT_FLAGS = -Ofast
+OPT_FLAGS = -O3
 
 PROFILE_FLAG = -pg
 DEBUG_FLAG = -g3
@@ -42,6 +42,7 @@ SRC_FILE =		main.c \
 				debug/print_queue.c \
 				debug/print_tree_contents.c \
 				debug/print_path_list_values.c \
+				debug/t.c \
 				cleanup/free_lemin_struct.c \
 				cleanup/free_queue.c \
 				cleanup/free_path_struct.c \

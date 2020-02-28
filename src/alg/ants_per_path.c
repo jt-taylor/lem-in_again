@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 13:36:20 by jtaylor           #+#    #+#             */
-/*   Updated: 2020/02/27 18:02:22 by jtaylor          ###   ########.fr       */
+/*   Updated: 2020/02/27 22:00:00 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,4 +101,6 @@ void				ants_per_path(t_lemin *lemin)
 	get_len_for_all_paths(tmp);
 	distribute_ants_along_paths(lemin, tmp);
 	toggle_paths_with_0_ants_to_send(lemin->all_paths);
+	ft_printf("\n\nafter pruing 0 paths\n\n");
+	print_path_list(lemin->all_paths);
 }

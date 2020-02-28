@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 18:52:27 by jtaylor           #+#    #+#             */
-/*   Updated: 2020/02/27 21:17:13 by jtaylor          ###   ########.fr       */
+/*   Updated: 2020/02/28 00:05:47 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ int			handle_edge_first_backward_value(t_lemin *lemin,
 		t_rooms *rooms, t_path *path)
 {
 	(void)lemin;
+	if (!(path->room_to_check == path->cur_link->room1 || path->room_to_check == path->cur_link->room2))
+		return (0);
 	if (path->handle_first_back_room == 1)
 	{
 		if (path->cur_link->room1->backward && path->cur_link->room2->backward)
@@ -90,9 +92,33 @@ int			handle_edge_first_backward_value(t_lemin *lemin,
 	}
 	if (rooms->backward)
 		path->handle_first_back_room += 1;
-	else
+	else if (path->handle_first_back_room)
 		path->handle_first_back_room = 0;
 	return (1);
+}
+
+static inline int		inner_if_1(t_lemin *lemin, t_path *path)
+{
+	if (path->room_to_check == path->cur_link->room1 && (
+(path->room_to_check->to_use && path->room_to_check->to_use_start) ||
+(path->room_to_check->to_use && !path->room_to_check->to_use_start &&
+path->cur_link->room2 != lemin->end) ||
+(!path->room_to_check->to_use && path->room_to_check->to_use_start &&
+path->cur_link->room2 != lemin->start)))
+		return (1);
+	return (0);
+}
+
+static inline int		inner_if_2(t_lemin *lemin, t_path *path)
+{
+	if (path->room_to_check == path->cur_link->room2 && (
+(path->room_to_check->to_use && path->room_to_check->to_use_start) ||
+(path->room_to_check->to_use && !path->room_to_check->to_use_start &&
+path->cur_link->room1 != lemin->end) ||
+(!path->room_to_check->to_use && path->room_to_check->to_use_start &&
+path->cur_link->room1 != lemin->start)))
+		return (1);
+	return (0);
 }
 
 void				populate_path(t_lemin *lemin, t_path *path)
@@ -103,17 +129,13 @@ void				populate_path(t_lemin *lemin, t_path *path)
 		path->room_to_check = dequeue(path->q);
 		if (populate_path_inner_norm(lemin, path))
 			continue ;
-		while (path->cur_link)// && handle_edge_first_backward_value(lemin, path->room_to_check, path))
+		while (path->cur_link)
 		{
-			if (path->room_to_check == path->cur_link->room1 &&
-((path->cur_link->room1->to_use && (path->cur_link->room1->to_use_start && path->cur_link->room2 != lemin->start)) || (path->cur_link->room2->to_use != 1 &&
-path->cur_link->room2 != lemin->end) || (path->cur_link->room2->backward == 1
-	&& path->cur_link->room2 != lemin->end)))
+		//	if (path->cur_link)//&& !handle_edge_first_backward_value(lemin, path->room_to_check, path))
+		//		;
+			if (inner_if_1(lemin, path))
 				populate_path_inner2(lemin, path);
-			else if (path->room_to_check == path->cur_link->room2 &&
-((path->cur_link->room1->to_use && (path->cur_link->room2->to_use_start && path->cur_link->room1 != lemin->start)) || (path->cur_link->room1->to_use != 1 &&
-path->cur_link->room1 != lemin->end) || (path->cur_link->room1->backward == 1 &&
-path->cur_link->room1 != lemin->end)))
+			else if (inner_if_2(lemin, path))
 				populate_path_inner1(lemin, path);
 			if (path->room_to_check == lemin->end && (path->has_end = 1))
 				break ;

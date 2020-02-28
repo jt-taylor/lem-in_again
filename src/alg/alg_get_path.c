@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 18:47:31 by jtaylor           #+#    #+#             */
-/*   Updated: 2020/02/27 20:33:39 by jtaylor          ###   ########.fr       */
+/*   Updated: 2020/02/27 23:44:17 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,9 +108,11 @@ t_all_paths		*get_all_paths(t_lemin *lemin)
 	{
 		add_path_to_all_path_list(lemin, list, tmp);
 		tmp = get_new_path(lemin);
-		if (paths_found == lemin->total_ants)
+		if (paths_found == lemin->total_ants || paths_found == 14)
 			break ;
 		paths_found++;
 	}
+	if (tmp)
+		free_path_struct(tmp);
 	return (list);
 }

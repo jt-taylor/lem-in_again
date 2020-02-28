@@ -6,7 +6,7 @@
 /*   By: jtaylor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 13:47:37 by jtaylor           #+#    #+#             */
-/*   Updated: 2020/02/27 18:31:19 by jtaylor          ###   ########.fr       */
+/*   Updated: 2020/02/27 22:04:33 by jtaylor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ void			free_inbetween_nodes_in_swap(t_split_path *s)
 		if (tmp == s->p1_end_lim)
 			break ;
 		to_free = tmp;
+		((t_rooms *)to_free->content)->backward = 0;
+		((t_rooms *)to_free->content)->forward = 0;
 		tmp = tmp->next;
 		free(to_free);
 	}
