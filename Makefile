@@ -50,6 +50,7 @@ SRC_FILE =		main.c \
 				cleanup/free_lemin_tree.c \
 				cleanup/free_all_paths_struct.c \
 				alg/alg_main.c \
+				alg/alg_populate_edge_cases.c\
 				alg/alg_misc_functions.c \
 				alg/alg_get_path.c \
 				alg/alg_populate_path.c \

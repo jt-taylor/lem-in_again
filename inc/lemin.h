@@ -243,6 +243,10 @@ void			ants_per_path(t_lemin *lemin);
 void			reset_split_path(t_split_path *s);
 int				true_if_all_ants_in_exit_room(t_lemin *lemin);
 void			ant_arr_init(t_lemin *lemin);
+int				inner_if_1(t_lemin *lemin, t_path *path);
+int				inner_if_2(t_lemin *lemin, t_path *path);
+int				handle_edge_first_backward_value(t_lemin *lemin,
+		t_rooms *rooms, t_path *path);
 void			populate_path(t_lemin *lemin, t_path *path);
 int				check_pointers_in_arr(void **arr, void *target, int lim);
 void			populate_path_start_room(t_lemin *lemin, t_path *path);

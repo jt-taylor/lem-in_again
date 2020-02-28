@@ -25,7 +25,10 @@ void			debugger_print_path(t_all_paths *a, t_all_paths *b)
 		while (tmp1)
 		{
 			if (tmp1->content == tmp->content)
-				ft_printf("Duplicate node :\t%s\n", ((t_rooms *)tmp->content)->room_name);
+			{
+				ft_printf("Duplicate node :\t%s\n",
+					((t_rooms *)tmp->content)->room_name);
+			}
 			tmp1 = tmp1->next;
 		}
 		tmp = tmp->next;

@@ -22,7 +22,6 @@ static inline void	toggle_to_use(t_lemin *lemin, t_path *path, t_branch
 	if (one_before_end->parent->content == lemin->start)
 	{
 		((t_rooms *)one_before_end->content)->to_use_start = 0;
-		//((t_rooms *)one_before_end->content)->to_use = 0;
 	}
 }
 
