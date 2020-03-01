@@ -25,6 +25,15 @@ static inline void	toggle_to_use(t_lemin *lemin, t_path *path, t_branch
 	}
 }
 
+/*
+** update_rooms_with_path_info-----------------------------------
+** for the rooms on the current path, it will be toggled their use
+** on the room after start and room before end to not use for
+** the next path search, and for each room on the path that
+** it's not the endroom or startroom, it will increase the forward
+** value by 1 and swap the backward value between 1 and 0.
+*/
+
 void				update_rooms_with_path_info(t_lemin *lemin, t_path *path)
 {
 	t_branch		*tmp;

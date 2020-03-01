@@ -69,6 +69,10 @@ typedef struct	s_tree
 
 /*
 ** parse -----------------------------------------------------------------------
+** forward -- by default is 0
+** backward -- by default is 0
+** to_use -- checks if the room can go to the end room, by default is 1
+** to_use_start -- checks if the room can go to the start room, by default is 1
 */
 
 typedef struct	s_rooms
@@ -94,6 +98,11 @@ typedef struct	s_link
 
 /*
 ** path find -------------------------------------------------------------------
+** room_to_check
+** q: queue for the path
+** i: the number of rooms added to the path, also serves as an index of the path
+** handle_first_back_room:
+** end_br:
 */
 
 typedef struct	s_path
@@ -245,8 +254,7 @@ int				true_if_all_ants_in_exit_room(t_lemin *lemin);
 void			ant_arr_init(t_lemin *lemin);
 int				inner_if_1(t_lemin *lemin, t_path *path);
 int				inner_if_2(t_lemin *lemin, t_path *path);
-int				handle_edge_first_backward_value(t_lemin *lemin,
-		t_rooms *rooms, t_path *path);
+int				populate_path_inner_norm(t_lemin *lemin, t_path *path);
 void			populate_path(t_lemin *lemin, t_path *path);
 int				check_pointers_in_arr(void **arr, void *target, int lim);
 void			populate_path_start_room(t_lemin *lemin, t_path *path);

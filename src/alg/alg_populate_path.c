@@ -12,6 +12,15 @@
 
 #include "lemin.h"
 
+/*
+** populate_path_inner---------------------------------
+** it adds a new room to the tree, based from the current room
+** and the current link, if the room has not been added before
+** to the current path search and it's not in the tree,
+** add the room to the tree, else don't add the node. The path index
+** will still incrementing if the room hasn't been checked before.
+*/
+
 static inline void	populate_path_inner1(t_lemin *lemin, t_path *path)
 {
 	if (!check_pointers_in_arr(path->past_rooms, path->cur_link->room1,
@@ -40,6 +49,14 @@ static inline void	populate_path_inner2(t_lemin *lemin, t_path *path)
 	}
 }
 
+/*
+** populate_path_start_room---------------------------------
+** It populates the tree with all the nodes connected from
+** the room_to_check room, and if the room_to_check is the endroom,
+** break right away after setting the node and set the path
+** has an end room.
+*/
+
 void				populate_path_start_room(t_lemin *lemin, t_path *path)
 {
 	path->cur_link = lemin->links;
@@ -61,18 +78,13 @@ void				populate_path_start_room(t_lemin *lemin, t_path *path)
 	}
 }
 
-static inline int	populate_path_inner_norm(t_lemin *lemin, t_path *path)
-{
-	(void)lemin;
-	if ((path->room_to_check->to_use != 1 ||
-		path->room_to_check->to_use_start != 1)
-		&& !path->room_to_check->backward)
-		return (1);
-	if ((path->cur_link->room1 == lemin->end ||
-		path->cur_link->room2 == lemin->end) && !path->room_to_check->to_use)
-		return (1);
-	return (0);
-}
+/*
+** populate_path--------------------------------------------
+** the populate_path will keep adding nodes to the tree based
+** from the edge cases, until an endroom has found and the current
+** path has an endroom set from populate_path_start_room,
+** if not keep adding nodes until queue is empty.
+*/
 
 void				populate_path(t_lemin *lemin, t_path *path)
 {

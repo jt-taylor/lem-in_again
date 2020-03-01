@@ -47,6 +47,16 @@ t_path			*init_new_path(t_lemin *lemin)
 	return (new_path);
 }
 
+/*
+** get_new_path--------------------------------------------
+** returns a new path founded and is populated
+** by using Breadth First Search and Edmond Karp Algorithm.
+** For each new path founded, all the data from the rooms in the
+** current path is updated for the next new path search.
+** If the current searching path doesn't have an endroom,
+** the path will be deleted right away and return NULL instead.
+*/
+
 static t_path	*get_new_path(t_lemin *lemin)
 {
 	t_path			*path;
@@ -70,6 +80,13 @@ static t_path	*get_new_path(t_lemin *lemin)
 	return (path);
 }
 
+/*
+** add_path_to_all_path_list------------------------------------
+** for each current path founded, the tree path is converted
+** to a linked list in the t_all_paths struct list,
+** which each struct has different path from start to the end room.
+*/
+
 static void		add_path_to_all_path_list(t_lemin *lemin, t_all_paths *list,
 		t_path *path)
 {
@@ -88,6 +105,13 @@ static void		add_path_to_all_path_list(t_lemin *lemin, t_all_paths *list,
 	free_path_struct(path);
 	path = 0;
 }
+
+/*
+** get_all_paths--------------------------------------------
+** It will search all paths founded. For each new path founded, it
+** will be added to the list of all paths. If a path has
+** not been founded on the first search, the program will stop immediatly.
+*/
 
 t_all_paths		*get_all_paths(t_lemin *lemin)
 {
