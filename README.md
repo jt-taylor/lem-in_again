@@ -33,6 +33,8 @@ C compiler
 * this solution gets the graph from the layout and then we use a n-ary tree to find the shortest path, and then we find ~15 paths and split them on the intersection nodes .
 * there is usually 20 ~ 30 paths in the maximum flow of the graph but the last few paths may take hundreds of turns as opposed to  < 10 nodes seperation
 * this is not an implementation of ford-fulkerson or other max-flow alg's
+* So this project needs #include <stdint.h> in some of the library headers and there needs to be a define for the OPEN_MAX macro because it is depreciated on most modern linix distributions , in testing it you can set it to either FOPEN_MAX or a reasonable number like 200 , and this is only a pain to fix because the libraries are required to be in this repo instead of a gitsubmodule as part of the submission  requirements to get this graded .
+* also I don't have the source for the generator executable so if there are format erorrs I can't fix those , and pushing several ~ 10,000 line test files for a project that has no practical application other than the knowledge gained from making it seems pointless .
 ## Acknowledgments
 
 * The generator file was supplied by 42
